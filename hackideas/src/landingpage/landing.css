@@ -1,0 +1,36 @@
+
+
+.outerbackground{
+    
+    height: 100vh;
+    padding: 5%;
+    background-size: cover;
+    background-image: url("../image/d.png");
+    display: flex;
+    font-weight: 400;
+    font-family: sans-serif;
+}
+
+.firstcontainer{
+   height: 80vh;
+   width: 80vw;
+   
+    display: flex;
+    margin: auto;
+    
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 25px 60px 8px 60px;
+    border-radius: 15px;
+    transition: all 0.3s;
+    justify-content: center;
+}
+
+.secondcontainer{
+    width: 50vw;
+    height: 100vh;
+    background-size: cover;
+   background-color: blue;
+    display: flex;
+    font-weight: 400;
+    font-family: sans-serif;
+}
