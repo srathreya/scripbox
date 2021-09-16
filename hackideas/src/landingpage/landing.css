@@ -5,7 +5,7 @@
     height: 100vh;
     padding: 5%;
     background-size: cover;
-    background-image: url("../image/d.png");
+    background-image: url("../image/hack3.jpg");
     display: flex;
     font-weight: 400;
     font-family: sans-serif;
@@ -14,10 +14,10 @@
 .firstcontainer{
    height: 80vh;
    width: 80vw;
-   
+   background-color: white;
     display: flex;
     margin: auto;
-    
+    background-blend-mode: lighten;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
     padding: 25px 60px 8px 60px;
     border-radius: 15px;
