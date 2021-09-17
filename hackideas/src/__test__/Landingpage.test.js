@@ -6,13 +6,13 @@ import Home from "../home/Home";
 import '@testing-library/jest-dom/extend-expect'
 
 
-it("renders without crashing", () => {
+it("renders landing page without  crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<Landing />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it("renders without crashing", () => {
+  it("renders home page without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<Home />, div);
     ReactDOM.unmountComponentAtNode(div);

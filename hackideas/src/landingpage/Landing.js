@@ -1,33 +1,26 @@
 import React, { useState } from "react";
 import './landing.css'
 import Users  from "../Users";
-import _, { sum } from 'lodash'
+import _ from 'lodash'
 import { useHistory } from "react-router-dom";
 
 export default function Landing() {
 
-  const history = useHistory();
-    const [empId, setempId] = useState('');
-    const handleUserName = e => {
+const history = useHistory();
+const [empId, setempId] = useState('');
 
-        setempId(e.target.value);
-        //console.log(Users)
-      };
+const handleUserName = e => {
+ setempId(e.target.value)};
 
-      const getUserAuthentication = () => {
-        var usersauth = _.filter(Users, {
-            'empid': empId,
-            
-          });
-          console.log(usersauth,empId)
-          
-          if(usersauth.length > 0 ){
-history.push("/mainpage")
-localStorage.setItem("id",empId)
-          }else{
+const getUserAuthentication = () => {
+  var usersauth = _.filter(Users, {'empid': empId,});
+ //console.log(usersauth,empId)
+if(usersauth.length > 0 ){
+  history.push("/mainpage")
+  localStorage.setItem("id",empId)
+}else{
 alert('invalid')
-          }
-      }
+}}
       
     return (
         <div>

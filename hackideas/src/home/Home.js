@@ -1,11 +1,8 @@
 
 
-import React,{useState,useEffect} from 'react'
-//import { db } from "../firebase/Firebase";
-
+import React from 'react'
 import _ from 'lodash'
-import { Button, Navbar,NavDropdown,Nav,Container } from 'react-bootstrap'
-
+import {  Navbar,Nav,Container } from 'react-bootstrap'
 import Hack from '../image/hs.jpg'
 
 export default function Home(props) {
@@ -15,7 +12,7 @@ export default function Home(props) {
         <div style={{height:'100vh',width:'100vw',overflowX:'hidden',backgroundColor:'#231F20'}} >
          <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'#231F20'}} variant="dark">
   <Container>
-  <Navbar.Brand href="#home">Hack Ideas</Navbar.Brand>
+  <Navbar.Brand >Hack Ideas</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">

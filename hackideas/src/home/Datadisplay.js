@@ -93,21 +93,22 @@ const fetchsortedarrayasec=()=>{
 const fetchsortedate=()=>{
   
   var sortedObj = _.sortBy( taskdata, function(o) { return new moment(o.date).format('DD-MM-YYYY') })
-  var sortedObjs = _.orderBy( sortedObj, function(o) { return new moment(o.date).format('DD-MM-YYYY'),['asc'] })
+ // var sortedObjs = _.orderBy( taskdata, function(o) { return new moment(o.date).format('DD-MM-YYYY'),['desc'] })
 
   
   console.log(sortedObj)
-  setTaskdata(sortedObjs)
+  setTaskdata(sortedObj)
   }
 
   const fetchsortedatedes=()=>{
   
-    var sortedObjes = _.sortBy( taskdata, function(o) { return new moment(o.date).format('DD-MM-YYYY') })
-    var sortedOb = _.orderBy( sortedObjes, function(o) { return new moment(o.date).format('DD-MM-YYYY'),['asc'] })
+    var sortedObjes = _.sortBy( taskdata, function(o) { return new moment(o.date).format('DD-MM-YYYY') }).reverse()
+    //var sortedOb = _.orderBy( taskdata, function(o) { return new moment(o.date).format('DD-MM-YYYY'),['asc'] })
   
     
-    console.log(sortedOb)
-    setTaskdata(sortedOb)
+    console.log(sortedObjes)
+    //console.log(sortedObjes)
+    setTaskdata(sortedObjes)
     }
 
 const mainList = Object.entries(taskdata).map(([key,value])=>{

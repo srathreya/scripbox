@@ -3,9 +3,10 @@ import {database} from '../firebase/Firebase'
 import _ from 'lodash'
 import { Form } from 'react-bootstrap'
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 
 export default function Addchalenge() {
-
+  const history = useHistory();
     const [values, setValues] = useState({
         name: '',
         des: '',
@@ -37,9 +38,9 @@ export default function Addchalenge() {
         const todoRef = database.ref('Tasks');
         const todo = {
           Taskname:values.name,
-          from:'1001',
+          from:localStorage.getItem("id"),
           date: moment().format('DD-MM-YYYY').toString(),
-          category: tags == '' ? 'Tech' : tags,
+          category: tags == '' ? 'feature' : tags,
           des:values.des,
           rating: 0,
          
@@ -47,6 +48,7 @@ export default function Addchalenge() {
     
         todoRef.push(todo)
         console.log(values.name,values.des,tags)
+        history.push("/mainpage")
     }
     return (
       <div class="card mb-5 mt-5" style={{width:'50vw',height:'auto',margin:'auto',borderRadius: '10%'}}>
