@@ -4,10 +4,11 @@ import {database} from '../firebase/Firebase'
 import './home.css'
 import logo from '../image/bcdark.png'
 import _ from 'lodash'
-import { Button, Navbar,NavDropdown,Nav,Container } from 'react-bootstrap'
+import { Button,Modal } from 'react-bootstrap'
 import moment from "moment";
 import Hack from '../image/hs.jpg'
 import Switch from "react-switch";
+import like from '../image/1136.png'
 
 
 export default function Datadisplay() {
@@ -16,6 +17,9 @@ export default function Datadisplay() {
   const [checked, setChecked] = useState(false);
   const [dated, setDated] = useState(false);
 
+  const [modalopen, setModalopen] = useState(false);
+  const [modalnam, setModalnam] = useState('');
+  const [modaldes, setModaldes] = useState('');
 
     useEffect(() => {
        fetchData();
@@ -52,6 +56,13 @@ export default function Datadisplay() {
   setChecked(checked)
   checked ? fetchsortedarray() : fetchsortedarrayasec()
   
+}
+
+const modals=(nam,des)=>{
+  setModalopen(true)
+  setModalnam(nam)
+  setModaldes(des)
+
 }
 
 const handledateChange=(dated)=>{
@@ -121,15 +132,18 @@ const mainList = Object.entries(taskdata).map(([key,value])=>{
   <div class="card-body">
     <h4 class="card-title">{value.Taskname}</h4>
     <p class="card-text">Votes: {value.rating}</p>
-    <p class="card-text">Starting Date: {value.date}</p>
+    <p class="card-text">Created Date: {value.date}</p>
     <div className='column'>
-      <div><button type='button' onClick={() =>likes(key,value.rating)} className="btn btn-danger btn-sm mb-1">like</button></div>
-    <div><button className="btn btn-danger btn-sm mb-1">See discription</button></div>
-    <div><button  class="btn btn-danger btn-sm">Solve</button></div>
-    
+      <center>
+      <div><button type='button' onClick={() =>likes(key,value.rating)} className="btn btn-primary btn-sm mb-1"><img src={like} height='30px' width='30px' /><span style={{marginLeft:'15px'}}>Like</span></button></div>
+      <div><button type='button' className="btn btn-primary btn-sm mb-1" onClick={() =>modals(value.Taskname,value.des)}>See discription</button></div>
+      <div><button  type='button' className="btn btn-danger btn-sm">Solve</button></div>
+      </center>
     </div>
+
   </div>
-</div>
+   </div>
+
   );
 })
 
@@ -145,7 +159,7 @@ const petList =
   
     return (
         <div>
-        
+        <p>The All new sort is here</p>
 <label>
         <span style={{color:'white',marginRight:'10px'}}>Lowest Votes</span>
         <Switch
@@ -185,27 +199,33 @@ const petList =
           <span style={{color:'white',marginRight:'10px'}}>New</span>
       </label>
   <div class="card-deck">
-      <div className='row ' style={{paddingLeft:'50px',paddingRight:'50px',backgroundColor:'#231F20'}}>
+      <div className='row ' style={{paddingLeft:'50px',paddingRight:'50px',backgroundColor:'#07253D'}}>
   {taskdata.length == 0 ? petList : mainList}
   </div>
 
 
 
+  <Modal show={modalopen} >
+        <Modal.Header >
+          <Modal.Title>{modalnam}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modaldes}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() =>setModalopen(false)}>
+            Close
+          </Button>
+        
+        </Modal.Footer>
+      </Modal>
 
 
-
-
-
+  
 
 
 
 
 </div>
-            <button type="button" className="btn btn-dark" onClick={() =>fetchBlogs()} >Dark</button>
-           
-            <button type="button" className="btn btn-dark" onClick={() =>fetchsortedarray()} >darkDark</button>
-            <button type="button" className="btn btn-dark" onClick={() =>fr('md')} >d</button>
-            <button type="button" className="btn btn-dark" onClick={() =>fetchsortedate()} >date</button>
+          
         </div>
     )
 }

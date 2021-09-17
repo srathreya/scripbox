@@ -16,8 +16,9 @@ const getUserAuthentication = () => {
   var usersauth = _.filter(Users, {'empid': empId,});
  //console.log(usersauth,empId)
 if(usersauth.length > 0 ){
-  history.push("/mainpage")
   localStorage.setItem("id",empId)
+  history.push("/mainpage")
+  
 }else{
 alert('invalid')
 }}
@@ -31,7 +32,7 @@ alert('invalid')
  <h1 style={{color:'white',fontSize:'100px'}} data-testid='heading'>HACK IDEAS</h1>
  <p style={{color:'white',fontSize:'50px'}}>#CodingTheFuture</p>
   <input type="text" name="username" onChange={handleUserName} placeholder="enter emp id" data-testid="countvalue" />
-  <button type="button" class="btn btn-primary m-5" onClick={() =>getUserAuthentication()} data-testid="submitRefButton">Submit</button>
+  <button type="button" class="btn btn-primary m-5" data-testid="submitRefButton" onClick={() =>getUserAuthentication()} >Submit</button>
   
 
   
