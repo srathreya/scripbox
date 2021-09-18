@@ -14,31 +14,23 @@ export default function Home(props) {
         <div style={{height:'100vh',width:'100vw',overflowX:'hidden',backgroundColor:'#07253D'}} >
          <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'#07253D'}} variant="dark">
   <Container>
-  <Navbar.Brand href="#home">
+  <Navbar.Brand>
       <img
         src={logo}
         width="50"
         height="30"
-        className="d-inline-block align-top"
-        
+        className="d-inline-block align-top"        
       />
     </Navbar.Brand>
   <Navbar.Brand >Hack Ideas</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-   
-  
-   
-  
-    
+  <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">    
     <Nav className="me-auto justify-content-end">
-    <Nav.Link href="/mainpage" >Home</Nav.Link>
-      <Nav.Link className="justify-content-end" href="/addchallenge" >Add Challenge</Nav.Link>
-     
-    </Nav>
-    
-    
-  </Navbar.Collapse>
+    <Nav.Link href="/mainpage"  >Home</Nav.Link>
+      <Nav.Link className="justify-content-end" href="/addchallenge" >Add Challenge</Nav.Link>  
+      <Nav.Link href="/"  >Logout</Nav.Link>   
+    </Nav>  
+    </Navbar.Collapse>
   </Container>
 </Navbar>
 <img src={Hack} className="imgwithborder" height='350px' width='100%'/>

@@ -1,60 +1,54 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import {database} from '../firebase/Firebase'
 import _ from 'lodash'
-import { Form } from 'react-bootstrap'
+
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 
 export default function Addchalenge() {
+
+  
   const history = useHistory();
-   
-      const formDefaultValues={
-        cname: '',
-        des: '',
-        tags:'',
-       
-    }
+  const formDefaultValues={
+    cname: '',
+    des: '',
+    tags:'',}
     const [formValues,setFormValues]=useState(formDefaultValues)
     const {tags,des,cname}=formValues
-      
-     
-    
-       function handleChanges(e){
-        const target=e.target
-        setFormValues(prevState=>({
-            ...prevState,
-            [target.name]:target.value
-        }))
+    function handleChanges(e){
+    const target=e.target
+    setFormValues(prevState=>({
+    ...prevState,
+    [target.name]:target.value }))
+    }
+    const adddata=()=>{
+      const todoRef = database.ref('Tasks');
+      const todo = {
+        Taskname:cname,
+        from:localStorage.getItem("id"),
+        date: moment().format('DD-MM-YYYY').toString(),
+        category: tags == '' ? 'feature' : tags,
+        des:des,
+        rating: 0,
        
-    }
-     
-      
-
-    
-      const adddata=()=>{
-        const todoRef = database.ref('Tasks');
-        const todo = {
-          Taskname:cname,
-          from:localStorage.getItem("id"),
-          date: moment().format('DD-MM-YYYY').toString(),
-          category: tags == '' ? 'feature' : tags,
-          des:des,
-          rating: 0,
-         
-        };
-    
-        todoRef.push(todo)
-        console.log(cname,des,tags)
-        history.push("/mainpage")
-    }
-
-    const addchallenge = () => {
-      if(cname=='' || des==''){
+      };
+  
+      todoRef.push(todo)
+      console.log(cname,des,tags)
+      history.push("/mainpage")
+  } 
+  const addchallenge = () => {
+    if(cname=='' || des==''){
 alert('fill all fields')
-      }else{
-        adddata()
-      }
-    };
+    }else{
+      adddata()
+    }
+  };    
+
+    
+     
+
+    
     return (
       <div class="card mb-5 mt-5" style={{width:'50vw',height:'auto',margin:'auto',borderRadius: '10%'}}>
   
