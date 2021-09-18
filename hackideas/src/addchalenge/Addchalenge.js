@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {database} from '../firebase/Firebase'
 import _ from 'lodash'
 
@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 export default function Addchalenge() {
 
-  
+  const [taskdata, setTaskdata] = useState([]);
   const history = useHistory();
   const formDefaultValues={
     cname: '',
@@ -15,6 +15,23 @@ export default function Addchalenge() {
     tags:'',}
     const [formValues,setFormValues]=useState(formDefaultValues)
     const {tags,des,cname}=formValues
+    useEffect(() => {
+      fetchData();
+     // fetchDatas();
+    //  checked ? fetchsortedarray() : fetchsortedarrayasec()
+   // console.log(checked)
+     }, [])
+   
+   const fetchData=()=>{
+     let ref = database.ref('Tasks');
+   ref.on('value', snapshot => {
+     const state = snapshot.val();
+     setTaskdata(state)
+     //setMinordata(state)
+     console.log(state);
+   })
+  
+ }
     function handleChanges(e){
     const target=e.target
     setFormValues(prevState=>({
@@ -41,7 +58,13 @@ export default function Addchalenge() {
     if(cname=='' || des==''){
 alert('fill all fields')
     }else{
-      adddata()
+      var usersauth = _.filter(taskdata, {'Taskname': cname,});
+      if(usersauth.length == 0){
+        adddata()
+      }
+      else{
+        alert("same Name Cant exist")
+      }
     }
   };    
 
